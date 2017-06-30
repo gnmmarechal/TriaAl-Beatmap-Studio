@@ -46,9 +46,15 @@ namespace TriaAl_Beatmap_Studio
                 }
                 if (load_metadata.Checked)
                 {
-                    TagLib.File tagFile = TagLib.File.Create(music_filename);
-                    song_title_textbox.Text = tagFile.Tag.Title;
-                    composer_textbox.Text = tagFile.Tag.AlbumArtists[0];
+
+                    try
+                    {
+                        TagLib.File tagFile = TagLib.File.Create(music_filename);
+                        song_title_textbox.Text = tagFile.Tag.Title;
+                        composer_textbox.Text = tagFile.Tag.AlbumArtists[0];
+                    }
+                    catch (Exception a) { };
+
                 }
                 media_player.URL = music_filename;
                 timer1.Start();
